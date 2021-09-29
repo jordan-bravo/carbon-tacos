@@ -1,0 +1,53 @@
+$feature-flags: (
+  component-x: true,
+  breaking-changes-x: true,
+  grid: true,
+  ui-shell: true,
+);
+
+@import "~carbon-components/scss/globals/scss/styles.scss";
+
+.demo--heading {
+  margin: $layout-md 0 $layout-2xs;
+  @include type-style("heading-02");
+}
+
+.demo--subheading {
+  margin: $layout-2xs 0;
+  @include type-style("label-01");
+}
+.demo--col-bleed {
+  padding: 0;
+
+  &:not(:last-child) {
+    max-width: calc(100% - 1px);
+    margin-right: 1px;
+  }
+}
+
+.demo--row-cta {
+  margin-top: $layout-2xs;
+}
+
+.demo--row-table {
+  margin-bottom: $layout-md;
+}
+
+.demo--col-cta {
+  padding: 0;
+  text-align: right;
+}
+
+.demo--label {
+  @include type-style("label-01");
+}
+
+.demo--value {
+  @include type-style("productive-heading-01");
+}
+
+// Overides
+
+.bx--data-table-v2-container {
+  padding-top: 0;
+}
