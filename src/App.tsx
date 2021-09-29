@@ -58,7 +58,11 @@ const App: React.FC = (): ReactElement => {
 
   const returnDataTable = (): ReactElement => {
     return (
-      <DataTable rows={ingredientsRowData} headers={ingredientsHeaderData}>
+      <DataTable
+        rows={ingredientsRowData}
+        headers={ingredientsHeaderData}
+        isSortable
+      >
         {({
           rows,
           headers,
