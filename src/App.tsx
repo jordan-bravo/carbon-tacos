@@ -120,7 +120,7 @@ const App: React.FC = (): ReactElement => {
     <div>
       <Header>
         <HeaderName href="#">Tacos</HeaderName>
-        <HeaderNavigation aria-label="IBM Tacos">
+        <HeaderNavigation aria-label="IBM Carbon Tacos">
           <HeaderMenuItem href="#">Menu</HeaderMenuItem>
           <HeaderMenuItem href="#">Ingredients</HeaderMenuItem>
           <HeaderMenuItem href="#">Locations</HeaderMenuItem>
