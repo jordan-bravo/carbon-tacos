@@ -46,6 +46,11 @@ $feature-flags: (
   @include type-style("productive-heading-01");
 }
 
+.margin-horizontal-zero {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 // Overides
 
 .bx--data-table-v2-container {
