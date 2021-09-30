@@ -2,25 +2,17 @@ import React, { ReactElement, useEffect, useState } from "react";
 import {
   Button,
   Content,
-  DataTable,
-  DataTableSkeleton,
   Header,
   HeaderName,
   HeaderNavigation,
   HeaderMenuItem,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableSelectAll,
-  TableSelectRow,
+  Search,
   Tile,
   InlineNotification,
 } from "carbon-components-react";
 import { ingredientsHeaderData, ingredientsRowData } from "./ingredientsData";
+import DataTableSkeletonComponent from "./components/DataTableSkeletonComponent";
+import DataTableComponent from "./components/DataTableComponent";
 
 const App = (): ReactElement => {
   const [totalFat, setTotalFat] = useState(0);
@@ -28,6 +20,7 @@ const App = (): ReactElement => {
   const [totalCarb, setTotalCarb] = useState(0);
   const [showTable, setShowTable] = useState(false);
   const [showToastNotification, setShowToastNotification] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const addTacoHandler = () => {
     setShowToastNotification(true);
@@ -50,86 +43,24 @@ const App = (): ReactElement => {
     setTotalCarb(totalCarbValue);
   };
 
-  const returnDataTableSkeleton = (): ReactElement => {
-    return (
-      <DataTableSkeleton
-        columnCount={5}
-        rowCount={4}
-        compact={false}
-        zebra={false}
-        showHeader={false}
-        showToolbar={false}
-      />
-    );
-  };
-
-  const returnDataTable = (): ReactElement => {
-    return (
-      <DataTable
-        rows={ingredientsRowData}
-        headers={ingredientsHeaderData}
-        isSortable
-      >
-        {({
-          rows,
-          headers,
-          getHeaderProps,
-          getRowProps,
-          getSelectionProps,
-          getTableProps,
-          getTableContainerProps,
-          selectedRows,
-        }: {
-          rows: any;
-          headers: any;
-          getHeaderProps: any;
-          getRowProps: any;
-          getSelectionProps: any;
-          getTableProps: any;
-          getTableContainerProps: any;
-          selectedRows: any;
-        }): ReactElement => {
-          updateTotals(selectedRows);
-          return (
-            <TableContainer {...getTableContainerProps()}>
-              <Table {...getTableProps()}>
-                <TableHead>
-                  <TableRow>
-                    <TableSelectAll {...getSelectionProps()} />
-                    {headers.map((header: any, i: any) => (
-                      <TableHeader key={i} {...getHeaderProps({ header })}>
-                        {header.header}
-                      </TableHeader>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row: any) => (
-                    <TableRow key={row.id} {...getRowProps({ row })}>
-                      <TableSelectRow {...getSelectionProps({ row })} />
-                      {row.cells.map((cell: any) => (
-                        <TableCell key={cell.id}>{cell.value}</TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          );
-        }}
-      </DataTable>
-    );
-  };
-
   useEffect(() => {
     setTimeout(async () => {
       setShowTable(true);
     }, 1500);
   }, []);
 
+  const filterItems: Function = (array: any, query: string) => {
+    if (query === "") return array;
+    else
+      return array.filter(
+        (element: any) =>
+          element.ingredient.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      );
+  };
+
   return (
     <div>
-      <Header>
+      <Header aria-label="IBM Carbon Tacos">
         <HeaderName href="#">Carbon Tacos</HeaderName>
         <HeaderNavigation aria-label="IBM Carbon Tacos">
           <HeaderMenuItem href="#">Menu</HeaderMenuItem>
@@ -187,8 +118,24 @@ const App = (): ReactElement => {
             <div className="bx--col demo--col-bleed"></div>
           </div>
         </div>
-        {!showTable && returnDataTableSkeleton()}
-        {showTable && returnDataTable()}
+        <div className="">
+          <Search
+            size="lg"
+            placeholder="search"
+            labelText="Search"
+            // {...props()}
+            id="search-1"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        {!showTable && <DataTableSkeletonComponent />}
+        {showTable && (
+          <DataTableComponent
+            updateTotals={updateTotals}
+            headerData={ingredientsHeaderData}
+            rowData={filterItems(ingredientsRowData, searchTerm)}
+          />
+        )}
       </Content>
     </div>
   );
