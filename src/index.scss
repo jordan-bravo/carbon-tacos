@@ -59,6 +59,11 @@ $feature-flags: (
   justify-content: end;
 }
 
+.toast-notification {
+  padding-right: 0rem;
+  padding-left: 2rem;
+}
+
 // Overides
 
 .bx--data-table-v2-container {

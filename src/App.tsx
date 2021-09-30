@@ -144,7 +144,7 @@ const App = (): ReactElement => {
               <h1 className="demo--heading">Build your own taco</h1>
               <h2 className="demo--subheading">Nutritional totals</h2>
             </div>
-            <div className="bx--col">
+            <div className="bx--col toast-notification">
               {showToastNotification && (
                 <InlineNotification
                   title="Taco Added"
