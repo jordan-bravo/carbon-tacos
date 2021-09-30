@@ -10,11 +10,15 @@ import {
   Tile,
   InlineNotification,
 } from "carbon-components-react";
-import { ingredientsHeaderData, ingredientsRowData } from "./ingredientsData";
+import {
+  ingredientsHeaderData,
+  ingredientsRowData,
+} from "./data/ingredientsData";
 import DataTableSkeletonComponent from "./components/DataTableSkeletonComponent";
 import DataTableComponent from "./components/DataTableComponent";
 
 const App = (): ReactElement => {
+  // State
   const [totalFat, setTotalFat] = useState(0);
   const [totalProtein, setTotalProtein] = useState(0);
   const [totalCarb, setTotalCarb] = useState(0);
@@ -22,6 +26,14 @@ const App = (): ReactElement => {
   const [showToastNotification, setShowToastNotification] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Simulate a delayed response
+  useEffect(() => {
+    setTimeout(async () => {
+      setShowTable(true);
+    }, 1500);
+  }, []);
+
+  // Methods
   const addTacoHandler = () => {
     setShowToastNotification(true);
     setTimeout(() => setShowToastNotification(false), 5000);
@@ -42,12 +54,6 @@ const App = (): ReactElement => {
     setTotalProtein(totalProteinValue);
     setTotalCarb(totalCarbValue);
   };
-
-  useEffect(() => {
-    setTimeout(async () => {
-      setShowTable(true);
-    }, 1500);
-  }, []);
 
   const filterItems: Function = (array: any, query: string) => {
     if (query === "") return array;
