@@ -18,14 +18,21 @@ import {
   TableSelectAll,
   TableSelectRow,
   Tile,
+  InlineNotification,
 } from "carbon-components-react";
 import { ingredientsHeaderData, ingredientsRowData } from "./ingredientsData";
 
-const App: React.FC = (): ReactElement => {
+const App = (): ReactElement => {
   const [totalFat, setTotalFat] = useState(0);
   const [totalProtein, setTotalProtein] = useState(0);
   const [totalCarb, setTotalCarb] = useState(0);
   const [showTable, setShowTable] = useState(false);
+  const [showToastNotification, setShowToastNotification] = useState(false);
+
+  const addTacoHandler = () => {
+    setShowToastNotification(true);
+    setTimeout(() => setShowToastNotification(false), 5000);
+  };
 
   const updateTotals: Function = (selectedRows: any): void => {
     let totalFatValue = 0;
@@ -123,7 +130,7 @@ const App: React.FC = (): ReactElement => {
   return (
     <div>
       <Header>
-        <HeaderName href="#">Tacos</HeaderName>
+        <HeaderName href="#">Carbon Tacos</HeaderName>
         <HeaderNavigation aria-label="IBM Carbon Tacos">
           <HeaderMenuItem href="#">Menu</HeaderMenuItem>
           <HeaderMenuItem href="#">Ingredients</HeaderMenuItem>
@@ -136,6 +143,16 @@ const App: React.FC = (): ReactElement => {
             <div className="bx--col">
               <h1 className="demo--heading">Build your own taco</h1>
               <h2 className="demo--subheading">Nutritional totals</h2>
+            </div>
+            <div className="bx--col">
+              {showToastNotification && (
+                <InlineNotification
+                  title="Taco Added"
+                  subtitle="Thank you for your order"
+                  kind="success"
+                  style={{ marginBottom: ".5rem" }}
+                />
+              )}
             </div>
           </div>
           <div className="bx--row margin-horizontal-zero">
@@ -163,7 +180,7 @@ const App: React.FC = (): ReactElement => {
               <h2 className="demo--subheading">Choose your ingredients</h2>
             </div>
             <div className="bx--col demo--col-cta">
-              <Button>Add taco</Button>
+              <Button onClick={() => addTacoHandler()}>Add taco</Button>
             </div>
           </div>
           <div className="bx--row demo--row-table">

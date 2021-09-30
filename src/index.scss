@@ -51,6 +51,14 @@ $feature-flags: (
   margin-right: 0;
 }
 
+.flex {
+  display: flex;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
 // Overides
 
 .bx--data-table-v2-container {
