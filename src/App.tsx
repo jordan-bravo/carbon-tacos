@@ -9,6 +9,9 @@ import {
   Search,
   Tile,
   InlineNotification,
+  Grid,
+  Row,
+  Column,
 } from "carbon-components-react";
 import {
   ingredientsHeaderData,
@@ -56,7 +59,7 @@ const App = (): ReactElement => {
   };
 
   const filterItems: Function = (array: any, query: string) => {
-    if (query === "") return array;
+    if (!query) return array;
     else
       return array.filter(
         (element: any) =>
@@ -65,7 +68,7 @@ const App = (): ReactElement => {
   };
 
   return (
-    <div>
+    <>
       <Header aria-label="IBM Carbon Tacos">
         <HeaderName href="#">Carbon Tacos</HeaderName>
         <HeaderNavigation aria-label="IBM Carbon Tacos">
@@ -74,76 +77,68 @@ const App = (): ReactElement => {
           <HeaderMenuItem href="#">Locations</HeaderMenuItem>
         </HeaderNavigation>
       </Header>
-      <Content id="main-content">
-        <div className="bs--grid">
-          <div className="bx--row">
-            <div className="bx--col">
-              <h1 className="demo--heading">Build your own taco</h1>
-              <h2 className="demo--subheading">Nutritional totals</h2>
-            </div>
-            <div className="bx--col toast-notification">
+      <Content className="tacos__main-content">
+        <Grid>
+          <Row>
+            <Column>
+              <h1 className="tacos--heading">Build your own taco</h1>
+              <h2 className="tacos--subheading">Nutritional totals</h2>
+            </Column>
+            <Column>
               {showToastNotification && (
                 <InlineNotification
                   title="Taco Added"
                   subtitle="Thank you for your order"
                   kind="success"
-                  style={{ marginBottom: ".5rem" }}
                 />
               )}
-            </div>
-          </div>
-          <div className="bx--row margin-horizontal-zero">
-            <div className="bx--col demo--col-bleed">
+            </Column>
+          </Row>
+          <Row className="margin-horizontal-zero">
+            <Column className="tacos--col-bleed">
               <Tile>
-                <h3 className="demo--label">Total Fat</h3>
-                <p className="demo--value">{totalFat}g</p>
+                <h3 className="tacos--label">Total Fat</h3>
+                <p className="tacos--value">{totalFat}g</p>
               </Tile>
-            </div>
-            <div className="bx--col demo--col-bleed">
+            </Column>
+            <Column className="tacos--col-bleed">
               <Tile>
-                <h3 className="demo--label">Total Protein</h3>
-                <p className="demo--value">{totalProtein}g</p>
+                <h3 className="tacos--label">Total Protein</h3>
+                <p className="tacos--value">{totalProtein}g</p>
               </Tile>
-            </div>
-            <div className="bx--col demo--col-bleed">
+            </Column>
+            <Column className="tacos--col-bleed">
               <Tile>
-                <h3 className="demo--label">Total Carbs</h3>
-                <p className="demo--value">{totalCarb}g</p>
+                <h3 className="tacos--label">Total Carbs</h3>
+                <p className="tacos--value">{totalCarb}g</p>
               </Tile>
-            </div>
-          </div>
-          <div className="bx--row demo--row-cta margin-horizontal-zero">
-            <div className="bx--col">
-              <h2 className="demo--subheading">Choose your ingredients</h2>
-            </div>
-            <div className="bx--col demo--col-cta">
+            </Column>
+          </Row>
+          <Row className="tacos--row-cta margin-horizontal-zero">
+            <Column>
+              <h2 className="tacos--subheading">Choose your ingredients</h2>
+            </Column>
+            <Column className="tacos--col-cta">
               <Button onClick={() => addTacoHandler()}>Add taco</Button>
-            </div>
-          </div>
-          <div className="bx--row demo--row-table">
-            <div className="bx--col demo--col-bleed"></div>
-          </div>
-        </div>
-        <div className="">
+            </Column>
+          </Row>
           <Search
             size="lg"
-            placeholder="search"
+            placeholder="Search"
             labelText="Search"
-            // {...props()}
-            id="search-1"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-        </div>
-        {!showTable && <DataTableSkeletonComponent />}
-        {showTable && (
-          <DataTableComponent
-            updateTotals={updateTotals}
-            headerData={ingredientsHeaderData}
-            rowData={filterItems(ingredientsRowData, searchTerm)}
-          />
-        )}
+          {!showTable && <DataTableSkeletonComponent />}
+          {showTable && (
+            <DataTableComponent
+              updateTotals={updateTotals}
+              headerData={ingredientsHeaderData}
+              rowData={filterItems(ingredientsRowData, searchTerm)}
+            />
+          )}
+        </Grid>
       </Content>
-    </div>
+    </>
   );
 };
 

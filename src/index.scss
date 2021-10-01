@@ -7,16 +7,16 @@ $feature-flags: (
 
 @import "~carbon-components/scss/globals/scss/styles.scss";
 
-.demo--heading {
+.tacos--heading {
   margin: $layout-md 0 $layout-2xs;
   @include type-style("heading-02");
 }
 
-.demo--subheading {
+.tacos--subheading {
   margin: $layout-2xs 0;
   @include type-style("label-01");
 }
-.demo--col-bleed {
+.tacos--col-bleed {
   padding: 0;
 
   &:not(:last-child) {
@@ -25,24 +25,24 @@ $feature-flags: (
   }
 }
 
-.demo--row-cta {
+.tacos--row-cta {
   margin-top: $layout-2xs;
 }
 
-.demo--row-table {
+.tacos--row-table {
   margin-bottom: $layout-md;
 }
 
-.demo--col-cta {
+.tacos--col-cta {
   padding: 0;
   text-align: right;
 }
 
-.demo--label {
+.tacos--label {
   @include type-style("label-01");
 }
 
-.demo--value {
+.tacos--value {
   @include type-style("productive-heading-01");
 }
 
@@ -57,11 +57,6 @@ $feature-flags: (
 
 .justify-end {
   justify-content: end;
-}
-
-.toast-notification {
-  padding-right: 0rem;
-  padding-left: 2rem;
 }
 
 // Overides
