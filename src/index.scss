@@ -1,10 +1,3 @@
-$feature-flags: (
-  component-x: true,
-  breaking-changes-x: true,
-  grid: true,
-  ui-shell: true,
-);
-
 @import "~carbon-components/scss/globals/scss/styles.scss";
 
 .tacos--heading {
@@ -16,6 +9,7 @@ $feature-flags: (
   margin: $layout-2xs 0;
   @include type-style("label-01");
 }
+
 .tacos--col-bleed {
   padding: 0;
 
