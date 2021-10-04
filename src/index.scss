@@ -40,7 +40,8 @@
   @include type-style("productive-heading-01");
 }
 
-.margin-horizontal-zero {
+.totals-row,
+.button-row {
   margin-left: 0;
   margin-right: 0;
 }

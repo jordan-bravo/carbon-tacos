@@ -69,10 +69,12 @@ const App = (): ReactElement => {
 
   return (
     <>
-      <Header aria-label="IBM Carbon Tacos">
+      <Header className="header" aria-label="IBM Carbon Tacos">
         <HeaderName href="#">Carbon Tacos</HeaderName>
         <HeaderNavigation aria-label="IBM Carbon Tacos">
-          <HeaderMenuItem href="#">Menu</HeaderMenuItem>
+          <HeaderMenuItem className="header__menu-item" href="#">
+            Menu
+          </HeaderMenuItem>
           <HeaderMenuItem href="#">Ingredients</HeaderMenuItem>
           <HeaderMenuItem href="#">Locations</HeaderMenuItem>
         </HeaderNavigation>
@@ -94,7 +96,7 @@ const App = (): ReactElement => {
               )}
             </Column>
           </Row>
-          <Row className="margin-horizontal-zero">
+          <Row className="totals-row">
             <Column className="tacos--col-bleed">
               <Tile>
                 <h3 className="tacos--label">Total Fat</h3>
@@ -114,7 +116,7 @@ const App = (): ReactElement => {
               </Tile>
             </Column>
           </Row>
-          <Row className="tacos--row-cta margin-horizontal-zero">
+          <Row className="tacos--row-cta button-row">
             <Column>
               <h2 className="tacos--subheading">Choose your ingredients</h2>
             </Column>
