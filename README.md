@@ -9,7 +9,7 @@
 - [SASS](https://sass-lang.com/)
   #### For testing:
   - [Jest](https://jestjs.io/)
-  - [Enzyome](https://enzymejs.github.io/enzyme/)
+  - [Enzyme](https://enzymejs.github.io/enzyme/)
   - [Cypress](https://cypress.io)
 
 ---
