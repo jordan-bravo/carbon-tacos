@@ -2,15 +2,15 @@
 
 ## A UI demo using IBM Carbon Design
 
-### Tech stack used:
+### Tech used:
 - [React](https://reactjs.org)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Carbon Design System](https://carbondesignsystem.com)
 - [SASS](https://sass-lang.com/)
-#### For testing:
-- [Jest](https://jestjs.io/)
-- [Enzyome](https://enzymejs.github.io/enzyme/)
-- [Cypress](https://cypress.io)
+  #### For testing:
+  - [Jest](https://jestjs.io/)
+  - [Enzyome](https://enzymejs.github.io/enzyme/)
+  - [Cypress](https://cypress.io)
 
 ---
 
