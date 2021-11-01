@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# Welcome to Carbon Tacos
+
+## A UI demo using IBM Carbon Design
+
+### Tech used:
+- [React](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Carbon Design System](https://carbondesignsystem.com)
+- [SASS](https://sass-lang.com/)
+  #### For testing:
+  - [Jest](https://jestjs.io/)
+  - [Enzyme](https://enzymejs.github.io/enzyme/)
+  - [Cypress](https://cypress.io)
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
