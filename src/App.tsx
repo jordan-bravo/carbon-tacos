@@ -1,12 +1,10 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import {
-  Button,
   Content,
   Header,
   HeaderName,
   HeaderNavigation,
   HeaderMenuItem,
-  Search,
   Tile,
   InlineNotification,
   Grid,
@@ -19,6 +17,7 @@ import {
 } from "./data/ingredientsData";
 import DataTableSkeletonComponent from "./components/DataTableSkeletonComponent";
 import DataTableComponent from "./components/DataTableComponent";
+import { Rows } from "./models/dataTableModels";
 
 const App = (): ReactElement => {
   // State
@@ -27,7 +26,6 @@ const App = (): ReactElement => {
   const [totalCarb, setTotalCarb] = useState(0);
   const [showTable, setShowTable] = useState(false);
   const [showToastNotification, setShowToastNotification] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   // Simulate a delayed response
   useEffect(() => {
@@ -37,34 +35,25 @@ const App = (): ReactElement => {
   }, []);
 
   // Methods
-  const addTacoHandler = () => {
+  const addTacoHandler = (): void => {
     setShowToastNotification(true);
     setTimeout(() => setShowToastNotification(false), 5000);
   };
 
-  const updateTotals: Function = (selectedRows: any): void => {
+  const updateTotals = (selectedRows: Array<Rows>): void => {
     let totalFatValue = 0;
     let totalProteinValue = 0;
     let totalCarbValue = 0;
     if (selectedRows.length !== 0) {
       for (let row of selectedRows) {
-        totalFatValue += row.cells[2].value;
-        totalProteinValue += row.cells[3].value;
-        totalCarbValue += row.cells[4].value;
+        totalFatValue += Number(row.cells[2].value);
+        totalProteinValue += Number(row.cells[3].value);
+        totalCarbValue += Number(row.cells[4].value);
       }
     }
     setTotalFat(totalFatValue);
     setTotalProtein(totalProteinValue);
     setTotalCarb(totalCarbValue);
-  };
-
-  const filterItems: Function = (array: any, query: string) => {
-    if (!query) return array;
-    else
-      return array.filter(
-        (element: any) =>
-          element.ingredient.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      );
   };
 
   return (
@@ -116,26 +105,14 @@ const App = (): ReactElement => {
               </Tile>
             </Column>
           </Row>
-          <Row className="tacos--row-cta button-row">
-            <Column>
-              <h2 className="tacos--subheading">Choose your ingredients</h2>
-            </Column>
-            <Column className="tacos--col-cta">
-              <Button onClick={() => addTacoHandler()}>Add taco</Button>
-            </Column>
-          </Row>
-          <Search
-            size="lg"
-            placeholder="Search"
-            labelText="Search"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          {!showTable && <DataTableSkeletonComponent />}
-          {showTable && (
+          {!showTable ? (
+            <DataTableSkeletonComponent />
+          ) : (
             <DataTableComponent
               updateTotals={updateTotals}
               headerData={ingredientsHeaderData}
-              rowData={filterItems(ingredientsRowData, searchTerm)}
+              rowData={ingredientsRowData}
+              addTacoHandler={addTacoHandler}
             />
           )}
         </Grid>
