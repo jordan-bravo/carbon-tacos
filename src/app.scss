@@ -1,3 +1,6 @@
+@import "carbon-components/scss/globals/scss/vars.scss";
+@import "carbon-components/scss/globals/scss/mixins.scss";
+
 .tacos--heading {
   margin: $layout-md 0 $layout-2xs;
   @include type-style("heading-02");
@@ -42,10 +45,6 @@
 .button-row {
   margin-left: 0;
   margin-right: 0;
-}
-
-.flex {
-  display: flex;
 }
 
 .justify-end {

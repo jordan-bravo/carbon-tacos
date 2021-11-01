@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import "./app.scss";
 import {
   Content,
   Header,
