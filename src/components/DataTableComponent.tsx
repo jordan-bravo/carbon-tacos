@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, ReactElement } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 import {
   DataTable,
   TableContainer,
@@ -18,17 +18,19 @@ import {
 
 import { Rows, Headers, Cells, RowData } from "../models/dataTableModels";
 
+type DataTableComponentProps = {
+  updateTotals: Function;
+  headerData: Array<Headers>;
+  rowData: Array<RowData>;
+  addTacoHandler: Function;
+};
+
 const DataTableComponent = ({
   updateTotals,
   headerData,
   rowData,
   addTacoHandler,
-}: {
-  updateTotals: Function;
-  headerData: Array<Headers>;
-  rowData: Array<RowData>;
-  addTacoHandler: Function;
-}): ReactElement => {
+}: DataTableComponentProps): ReactElement => {
   return (
     <DataTable rows={rowData} headers={headerData} isSortable>
       {({
