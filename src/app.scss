@@ -1,10 +1,6 @@
 @import "carbon-components/scss/globals/scss/vars.scss";
 @import "carbon-components/scss/globals/scss/mixins.scss";
 
-// .tacos__main-content {
-//   background-color: $ui-background;
-// }
-
 .tacos--heading {
   margin: $layout-md 0 $layout-2xs;
   @include type-style("heading-02");
